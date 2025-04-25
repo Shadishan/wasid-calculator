@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WASID Percent Stenosis Calculator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f9ff;
+      color: #0a1f44;
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 2px solid #cce0ff;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 76, 153, 0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #003366;
+    }
+    .logo-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .logo-container img {
+      max-height: 60px;
+      margin: 10px;
+    }
+    label, input {
+      display: block;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+    input[type="number"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #99c2ff;
+      border-radius: 5px;
+    }
+    button {
+      padding: 12px;
+      width: 100%;
+      background-color: #0052cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #003d99;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="captiva.png" alt="Captiva Logo">
+    <img src="nih.png" alt="NIH Logo">
+    <img src="unm.png" alt="UNM HSC Logo">
+  </div>
+
+  <h2>WASID Percent Stenosis Calculator</h2>
+
+  <label for="ds">Diameter at Stenosis (Ds):</label>
+  <input type="number" id="ds" step="0.01" placeholder="e.g., 1.5">
+
+  <label for="dn">Normal Vessel Diameter (Dn):</label>
+  <input type="number" id="dn" step="0.01" placeholder="e.g., 3.0">
+
+  <button onclick="calculateStenosis()">Calculate</button>
+
+  <div id="result"></div>
+
+  <script>
+    function calculateStenosis() {
+      const ds = parseFloat(document.getElementById('ds').value);
+      const dn = parseFloat(document.getElementById('dn').value);
+      const resultDiv = document.getElementById('result');
+
+      if (isNaN(ds) || isNaN(dn) || dn === 0) {
+        resultDiv.textContent = 'Please enter valid numbers for both Ds and Dn.';
+        return;
+      }
+
+      const stenosis = (1 - (ds / dn)) * 100;
+      resultDiv.textContent = `Percent Stenosis: ${stenosis.toFixed(2)}%`;
+    }
+  </script>
+</body>
+</html>
